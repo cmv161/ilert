@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Box, Typography, IconButton, Card, CardContent } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { alertsStore } from '../../../stores/alertsStore';
 import { widgetsStore } from '../../../stores/widgetsStore';
 import { useConfirmDialog } from '../../../utils/hooks/useConfirmDialog';
@@ -19,7 +19,6 @@ const OpenAlertsWidget = observer(({ id }: Props) => {
     }, []);
     const pending = alertsStore.pendingAlertsCount;
     const accepted = alertsStore.acceptedAlertsCount;
-    const onEdit = () => {};
 
     return (
         <WidgetContainer title="Open Alerts" loading={alertsStore.loading} error={alertsStore.error}>
@@ -31,14 +30,9 @@ const OpenAlertsWidget = observer(({ id }: Props) => {
                     mb: 2,
                 }}
             >
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="subtitle1" fontWeight={700}>
-                        Open alerts
-                    </Typography>
-                    <IconButton size="small" aria-label="edit" onClick={onEdit}>
-                        <FontAwesomeIcon icon={faPen} />
-                    </IconButton>
-                </Box>
+                <Typography variant="subtitle1" fontWeight={700}>
+                    Open alerts
+                </Typography>
 
                 <IconButton
                     size="small"
