@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Incident } from '../types/incidents';
 
-const ilertClient = axios.create({
+export const ilertClient = axios.create({
     baseURL: 'https://api.ilert.com/api',
     headers: {
         'Content-Type': 'application/json',
