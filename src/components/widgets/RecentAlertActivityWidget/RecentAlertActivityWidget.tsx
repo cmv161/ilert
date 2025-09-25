@@ -20,6 +20,7 @@ import { widgetsStore } from '../../../stores/widgetsStore';
 import { useConfirmDialog } from '../../../utils/hooks/useConfirmDialog';
 import type { LogEntry } from '../../../types/alerts';
 import WidgetContainer from '../WidgetContainer/WidgetContainer';
+import { useEffect } from 'react';
 
 interface RecentAlertActivityProps {
     id: string;
@@ -41,6 +42,9 @@ function getIcon(iconClass?: string) {
 
 const RecentAlertActivity: React.FC<RecentAlertActivityProps> = observer(({ id }) => {
     const { confirm, ConfirmDialog } = useConfirmDialog();
+    useEffect(() => {
+        alertsStore.loadRecentActivity();
+    }, []);
     const data: LogEntry[] = alertsStore.recentActivity;
 
     return (

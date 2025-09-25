@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Chip, Stack, IconButton } from '@mui/material';
 import moment from 'moment';
 import { observer } from 'mobx-react-lite';
@@ -18,6 +18,10 @@ interface OpenIncidentsProps {
 
 const OpenIncidents: React.FC<OpenIncidentsProps> = observer(({ id }) => {
     const { confirm, ConfirmDialog } = useConfirmDialog();
+    useEffect(() => {
+        incidentsStore.loadIncidents();
+    }, []);
+
     const data: Incident[] = incidentsStore.incidents;
     const getServiceIcon = (status: ServiceStatus) => {
         switch (status) {

@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { Box, Typography, IconButton, Card, CardContent } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +14,9 @@ type Props = {
 
 const OpenAlertsWidget = observer(({ id }: Props) => {
     const { confirm, ConfirmDialog } = useConfirmDialog();
+    useEffect(() => {
+        alertsStore.loadAlerts({ states: ['OPEN'] });
+    }, []);
     const pending = alertsStore.pendingAlertsCount;
     const accepted = alertsStore.acceptedAlertsCount;
     const onEdit = () => {};

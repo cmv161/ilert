@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { MenuItem, Button, Menu } from '@mui/material';
-import { addWidgetWithData } from '../../../utils/widgetManager';
-import type { WidgetType } from '../../../stores/widgetsStore';
+import { widgetsStore, type WidgetType } from '../../../stores/widgetsStore';
 
 type AddButtonProps = {
     id?: string;
@@ -18,7 +17,11 @@ const WidgetSelector: React.FC<AddButtonProps> = ({ id }) => {
     };
 
     const handleAddWidget = (type: WidgetType) => {
-        addWidgetWithData(type, id);
+        if (id) {
+            widgetsStore.replacePlaceholder(id, type);
+        } else {
+            widgetsStore.addWidget(type);
+        }
         setAnchorEl(null);
     };
 

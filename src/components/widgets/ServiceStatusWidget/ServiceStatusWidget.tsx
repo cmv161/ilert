@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { List, ListItem, ListItemIcon, ListItemText, Typography, Stack, IconButton } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { observer } from 'mobx-react-lite';
@@ -15,6 +15,9 @@ type Props = {
 
 const ServiceStatus: React.FC<Props> = observer(({ id }: Props) => {
     const { confirm, ConfirmDialog } = useConfirmDialog();
+    useEffect(() => {
+        servicesStore.loadServices();
+    }, []);
     const data = servicesStore.services;
     const getStatusIcon = (status: Service['status']) => {
         switch (status) {
