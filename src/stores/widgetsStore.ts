@@ -21,12 +21,15 @@ class WidgetsStore {
 
     addWidget(type: WidgetType) {
         const exists = this.widgets.find(w => w.type === type);
-        if (exists) return;
+        if (exists) {
+            return false;
+        }
 
         this.widgets.push({
             id: `${type}-${Date.now()}`,
             type,
         });
+        return true;
     }
 
     moveWidget(dragIndex: number, dropIndex: number) {
