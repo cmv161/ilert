@@ -100,6 +100,10 @@ class WidgetsStore {
     setWidgets(widgets: Widget[]) {
         this.widgets = widgets;
     }
+
+    deleteWidget(id: string) {
+        this.widgets = this.widgets.filter(w => w.id !== id);
+    }
 }
 
 export const widgetsStore = new WidgetsStore();
