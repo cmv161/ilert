@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Box, Paper } from '@mui/material';
 import { widgetsStore } from '../../stores/widgetsStore';
@@ -18,6 +18,10 @@ const Dashboard = observer(() => {
     };
 
     const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        widgetsStore.fetchPreferences();
+    }, []);
 
     const handleDrop = (e: React.DragEvent, dropIndex: number) => {
         const dragIndex = parseInt(e.dataTransfer.getData('index'), 10);
